@@ -3,8 +3,7 @@ package com.example.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.adapter.ListUserAdapter
 import com.example.myapplication.databinding.ActivityRecyclerViewBinding
 
 class RecyclerViewActivity : AppCompatActivity() {

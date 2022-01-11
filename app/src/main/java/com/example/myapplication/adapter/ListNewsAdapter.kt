@@ -1,13 +1,7 @@
-package com.example.myapplication
+package com.example.myapplication.adapter
 
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.ItemNewsBinding
@@ -32,10 +26,6 @@ class ListNewsAdapter(private val listNews: List<Article>): RecyclerView.Adapter
         holder.binding.newsTitle.text = listNews[position].title
         holder.binding.newsSource.text = listNews[position].source.name
         holder.binding.newsAuthor.text = listNews[position].author
-//        holder.binding.root.setOnClickListener {
-//            val moveIntent = Intent(Intent.ACTION_VIEW, Uri.parse(listNews[position].url))
-//            startActivity(it.context, moveIntent, null)
-//        }
         holder.binding.root.setOnClickListener {
             onItemClickCallback.onItemClicked(listNews[holder.adapterPosition])
         }

@@ -3,6 +3,7 @@ package com.example.myapplication.model
 import android.net.Uri
 import android.text.format.DateFormat
 import android.text.format.DateUtils
+import com.google.gson.annotations.SerializedName
 import retrofit2.http.Url
 import java.net.URI
 import java.text.SimpleDateFormat
@@ -27,6 +28,6 @@ data class Article(
 )
 
 data class ListSource(
-    val id: Int?,
+    val id: String?,
     val name: String
 )

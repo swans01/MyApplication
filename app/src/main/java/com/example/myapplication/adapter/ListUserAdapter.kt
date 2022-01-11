@@ -1,17 +1,12 @@
-package com.example.myapplication
+package com.example.myapplication.adapter
 
 import android.content.Intent
-import android.content.res.Resources
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.UserData
+import com.example.myapplication.UserDetailActivity
 import com.example.myapplication.databinding.ItemUserBinding
 
 class ListUserAdapter(private val listUser: UserData): RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
@@ -23,17 +18,17 @@ class ListUserAdapter(private val listUser: UserData): RecyclerView.Adapter<List
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.binding.name.text = listUser.listName[position]
-        holder.binding.alias.text = listUser.listAlias[position]
-        holder.binding.affiliation.text = listUser.listAffiliation[position]
-        holder.binding.photo.setImageResource(listUser.listPhoto[position])
+        holder.binding.name.text = UserData.listName[position]
+        holder.binding.alias.text = UserData.listAlias[position]
+        holder.binding.affiliation.text = UserData.listAffiliation[position]
+        holder.binding.photo.setImageResource(UserData.listPhoto[position])
         holder.binding.root.setOnClickListener {
             val moveIntent = Intent(it.context, UserDetailActivity::class.java)
-            moveIntent.putExtra("name", listUser.listName[position])
-            moveIntent.putExtra("alias", listUser.listAlias[position])
-            moveIntent.putExtra("affiliation", listUser.listAffiliation[position])
-            moveIntent.putExtra("photo", listUser.listPhoto[position])
-            moveIntent.putExtra("description", listUser.listDescription[position])
+            moveIntent.putExtra("name", UserData.listName[position])
+            moveIntent.putExtra("alias", UserData.listAlias[position])
+            moveIntent.putExtra("affiliation", UserData.listAffiliation[position])
+            moveIntent.putExtra("photo", UserData.listPhoto[position])
+            moveIntent.putExtra("description", UserData.listDescription[position])
             startActivity(it.context, moveIntent, null)
 
         }
@@ -53,7 +48,7 @@ class ListUserAdapter(private val listUser: UserData): RecyclerView.Adapter<List
     }
 
     override fun getItemCount(): Int {
-        return listUser.listName.size
+        return UserData.listName.size
     }
 
     class ListViewHolder(var binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {

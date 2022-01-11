@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.myapplication.databinding.ActivityRetrofitBinding
 import com.example.myapplication.model.ResponseNews
+import com.example.myapplication.network.NewsApi
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -20,9 +21,9 @@ class RetrofitActivity : AppCompatActivity() {
             .baseUrl("https://newsapi.org/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val apiService = retrofit.create(GetNews::class.java)
+        val apiService = retrofit.create(NewsApi::class.java)
 
-        val news = apiService.getListNews("id","eaf0ed5151ec425098796b4b0e862245")
+        val news = apiService.getListNews("id","eaf0ed5151ec425098796b4b0e862245", 10, 1)
 
         news.enqueue(object: Callback<ResponseNews> {
             override fun onResponse(call: Call<ResponseNews>, response: Response<ResponseNews>) {
