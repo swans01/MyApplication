@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.content.res.Resources
 
 object UserData {
     public val listName: ArrayList<String> = arrayListOf(

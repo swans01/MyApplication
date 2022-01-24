@@ -1,10 +1,7 @@
 package com.example.myapplication
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import com.example.myapplication.databinding.Activity2Binding
 
 class Activity2 : AppCompatActivity() {

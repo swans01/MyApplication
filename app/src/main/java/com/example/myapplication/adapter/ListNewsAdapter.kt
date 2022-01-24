@@ -7,8 +7,9 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.ItemNewsBinding
 import com.example.myapplication.model.Article
 
-class ListNewsAdapter(private val listNews: List<Article>): RecyclerView.Adapter<ListNewsAdapter.ListViewHolder>() {
+class ListNewsAdapter(): RecyclerView.Adapter<ListNewsAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
+    private var  listNews :  MutableList<Article> = arrayListOf()
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
         this.onItemClickCallback = onItemClickCallback
@@ -40,6 +41,16 @@ class ListNewsAdapter(private val listNews: List<Article>): RecyclerView.Adapter
 
     interface OnItemClickCallback {
         fun onItemClicked(data: Article)
+    }
+
+    fun addList(items: List<Article>){
+        listNews.addAll(items)
+        notifyDataSetChanged()
+    }
+
+    fun clear(){
+        listNews.clear()
+        notifyDataSetChanged()
     }
 }
 

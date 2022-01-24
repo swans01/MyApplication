@@ -2,47 +2,61 @@ package com.example.myapplication.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.network.NewsApi
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.myapplication.model.Article
-import com.example.myapplication.model.ResponseNews
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.myapplication.network.RetroInstance
+import kotlinx.coroutines.*
+import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Provider
 
-class NewsViewModel: ViewModel() {
+class NewsViewModel @Inject constructor(private val api: RetroInstance): ViewModel() {
+
     val articles = MutableLiveData<List<Article>>()
     val isLoading = MutableLiveData<Boolean>()
-    val errMessage = MutableLiveData<Throwable>()
+    val errMessage = MutableLiveData<String>()
+    val errCode = MutableLiveData<String>()
 
-    init {
-        callApi()
-    }
-
-    fun callApi(){
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://newsapi.org/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val apiService = retrofit.create(NewsApi::class.java)
-
-        val news = apiService.getListNews("bitcoin","eaf0ed5151ec425098796b4b0e862245", 10, 1)
+    fun callApi(key: String, page: Int){
+        //val apiService = RetroInstance.getRetroInstance().create(NewsApi::class.java)
 
         isLoading.value = true
-        news.enqueue(object: Callback<ResponseNews> {
-            override fun onResponse(call: Call<ResponseNews>, response: Response<ResponseNews>) {
-                if (response.isSuccessful){
-                    isLoading.value = false
-                    articles.value = response.body()!!.articles
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val responseNews = api.getRetroInstance().getListNews("metaverse", key, 10, page)
+                if (responseNews.code() == 200){
+                    isLoading.postValue(false)
+                    articles.postValue(responseNews.body()!!.articles)
+                }else if (responseNews.code() == 401){
+                    isLoading.postValue(false)
+                    errCode.postValue("401")
+                }
+            }
+            catch (e: Throwable){
+                if (e is IOException){
+                    errMessage.postValue("Network Error")
                 }
             }
 
-            override fun onFailure(call: Call<ResponseNews>, t: Throwable) {
-                isLoading.value = false
-                errMessage.value = t
-            }
-        })
+        }
+
     }
 
 }
+
+//class Factory @Inject constructor (private val newsViewModelProvider: Provider<NewsViewModel>): ViewModelProvider.Factory{
+//    @Suppress("UNCHECKED_CAST")
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        return  newsViewModelProvider.get() as T
+//    }
+//}
+
+//class NewsViewModelFactory(private val apiService: ApiEndpoint): ViewModelProvider.Factory{
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//        if (modelClass.isAssignableFrom(NewsViewModel::class.java)) {
+//            return NewsViewModel(apiService) as T
+//        }
+//        throw IllegalArgumentException("Unknown ViewModel class")
+//    }
+//}

@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".NewsRecyclerViewActivity"
+            android:name=".NewsDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".RetrofitActivity"
+            android:name=".NewsRecyclerViewActivity"
             android:exported="false" />
         <activity
             android:name=".UserDetailActivity"

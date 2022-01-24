@@ -3,9 +3,6 @@ package com.example.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.TextView
 import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +22,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.button.setOnClickListener { view ->
             val moveIntent = Intent(this@MainActivity, NewsRecyclerViewActivity::class.java)
+            moveIntent.putExtra("key", "a7551c3980934b3d9f122dd4baef482e")
             moveIntent.putExtra("textSent", binding.textView.text)
+            startActivity(moveIntent)
+        }
+
+        binding.button2.setOnClickListener { view ->
+            val moveIntent = Intent(this@MainActivity, NewsRecyclerViewActivity::class.java)
+            moveIntent.putExtra("key", "wrong key")
             startActivity(moveIntent)
         }
 
