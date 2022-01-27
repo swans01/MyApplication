@@ -18,13 +18,12 @@ class NewsViewModel @Inject constructor(private val api: RetroInstance): ViewMod
     val errMessage = MutableLiveData<String>()
     val errCode = MutableLiveData<String>()
 
-    fun callApi(key: String, page: Int){
-        //val apiService = RetroInstance.getRetroInstance().create(NewsApi::class.java)
+    fun callApi(key: String, newsQuery: String, page: Int){
 
         isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val responseNews = api.getRetroInstance().getListNews("metaverse", key, 10, page)
+                val responseNews = api.getRetroInstance().getListNews(newsQuery, key, 10, page)
                 if (responseNews.code() == 200){
                     isLoading.postValue(false)
                     articles.postValue(responseNews.body()!!.articles)

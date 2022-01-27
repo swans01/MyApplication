@@ -1,13 +1,11 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +14,6 @@ import com.example.myapplication.adapter.ListNewsAdapter
 import com.example.myapplication.databinding.ActivityNewsRecyclerViewBinding
 import com.example.myapplication.model.Article
 import com.example.myapplication.viewmodel.NewsViewModel
-import com.example.myapplication.viewmodel.ViewModelFactory
 import javax.inject.Inject
 
 class NewsRecyclerViewActivity : AppCompatActivity() {
@@ -45,7 +42,7 @@ class NewsRecyclerViewActivity : AppCompatActivity() {
             swipeRefreshLayout.isRefreshing = false
             page = 1
             listNewsAdapter.clear()
-            viewModel.callApi(key!!, page)
+           // viewModel.callApi(key, page)
         }
 
         binding.recyclerViewNews.addOnScrollListener(object: RecyclerView.OnScrollListener(){
@@ -53,7 +50,7 @@ class NewsRecyclerViewActivity : AppCompatActivity() {
                 if (layoutManager.itemCount != 0 && layoutManager.findLastCompletelyVisibleItemPosition() == layoutManager.itemCount - 1){
                     page++
                     Log.d("page", "$page")
-                    viewModel.callApi(key!!, page)
+                   // viewModel.callApi(key!!, page)
                 }
                 super.onScrolled(recyclerView, dx, dy)
             }
@@ -64,7 +61,7 @@ class NewsRecyclerViewActivity : AppCompatActivity() {
         //viewModel = ViewModelProvider(this, Factory(RetroInstance.getRetroInstance().create(NewsApi::class.java)))[NewsViewModel::class.java]
         DaggerAppComponent.builder().build().inject(this)
         viewModel = ViewModelProvider(this, factory)[NewsViewModel::class.java]
-        viewModel.callApi(key!!, page)
+        //viewModel.callApi(key!!, page)
         loadNewsToActivity()
         
         viewModel.articles.observe(this, {articles ->

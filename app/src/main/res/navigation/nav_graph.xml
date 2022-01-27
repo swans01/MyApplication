@@ -17,22 +17,80 @@
             android:id="@+id/action_homeFragment_to_recyclerViewFragment"
             app:destination="@id/recyclerViewFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_newsRecyclerViewFragment"
-            app:destination="@id/newsRecyclerViewFragment" />
+            android:id="@+id/action_homeFragment_to_newsSearchFragment"
+            app:destination="@id/newsSearchFragment" />
+
+
     </fragment>
     <fragment
         android:id="@+id/replicateFragment"
         android:name="com.example.myapplication.ReplicateFragment"
         android:label="fragment_replicate"
-        tools:layout="@layout/fragment_replicate" />
+        tools:layout="@layout/fragment_replicate" >
+    </fragment>
     <fragment
         android:id="@+id/recyclerViewFragment"
         android:name="com.example.myapplication.RecyclerViewFragment"
         android:label="fragment_recycler_view"
-        tools:layout="@layout/fragment_recycler_view" />
+        tools:layout="@layout/fragment_recycler_view" >
+        <action
+            android:id="@+id/action_recyclerViewFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newsRecyclerViewFragment"
         android:name="com.example.myapplication.NewsRecyclerViewFragment"
         android:label="fragment_news_recycler_view"
-        tools:layout="@layout/fragment_news_recycler_view" />
+        tools:layout="@layout/fragment_news_recycler_view" >
+
+        <argument
+            android:name="newsQuery"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_newsRecyclerViewFragment_to_newsDetailFragment2"
+            app:destination="@id/newsDetailFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/newsSearchFragment"
+        android:name="com.example.myapplication.NewsSearchFragment"
+        android:label="fragment_news_search"
+        tools:layout="@layout/fragment_news_search" >
+        <action
+            android:id="@+id/action_newsSearchFragment_to_newsRecyclerViewFragment"
+            app:destination="@id/newsRecyclerViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.example.myapplication.UserDetailFragment"
+        android:label="fragment_user_detail"
+        tools:layout="@layout/fragment_user_detail">
+
+        <argument
+            android:name="name"
+            app:argType="string"
+            />
+        <argument
+            android:name="alias"
+            app:argType="string"
+            />
+        <argument
+            android:name="affiliation"
+            app:argType="string"
+            />
+        <argument
+            android:name="description"
+            app:argType="string"
+            />
+        <argument
+            android:name="photo"
+            app:argType="integer"
+            />
+
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.example.myapplication.NewsDetailFragment"
+        android:label="fragment_news_detail"
+        tools:layout="@layout/fragment_news_detail" />
 </navigation>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.adapter.ListUserAdapter
 import com.example.myapplication.databinding.FragmentRecyclerViewBinding
@@ -17,7 +18,6 @@ class RecyclerViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_recycler_view, container, false)
         binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -25,6 +25,18 @@ class RecyclerViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.layoutManager = LinearLayoutManager(view.context)
-        binding.recyclerView.adapter = ListUserAdapter(UserData)
+
+        val  listUserAdapter = ListUserAdapter(UserData)
+        binding.recyclerView.adapter = listUserAdapter
+
+        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: UserData, position: Int) {
+                val direction = RecyclerViewFragmentDirections.actionRecyclerViewFragmentToUserDetailFragment(data.listName[position],
+                    data.listAlias[position], data.listAffiliation[position], data.listDescription[position], data.listPhoto[position])
+
+                findNavController().navigate(direction)
+            }
+        })
+
     }
 }

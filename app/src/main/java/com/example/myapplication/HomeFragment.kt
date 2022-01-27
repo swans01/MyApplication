@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.button3.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_newsRecyclerViewFragment)
+            it.findNavController().navigate(R.id.action_homeFragment_to_newsSearchFragment)
         }
     }
 
