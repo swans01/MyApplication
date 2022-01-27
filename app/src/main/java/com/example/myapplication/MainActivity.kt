@@ -20,18 +20,35 @@ class MainActivity : AppCompatActivity() {
 
         //button = findViewById(R.id.button)
 
+
         binding.button.setOnClickListener { view ->
-            val moveIntent = Intent(this@MainActivity, NewsRecyclerViewActivity::class.java)
-            moveIntent.putExtra("key", "a7551c3980934b3d9f122dd4baef482e")
-            moveIntent.putExtra("textSent", binding.textView.text)
+            val moveIntent = Intent(this@MainActivity, ReplicateActivity::class.java)
             startActivity(moveIntent)
         }
 
         binding.button2.setOnClickListener { view ->
-            val moveIntent = Intent(this@MainActivity, NewsRecyclerViewActivity::class.java)
-            moveIntent.putExtra("key", "wrong key")
+            val moveIntent = Intent(this@MainActivity, RecyclerViewActivity::class.java)
             startActivity(moveIntent)
         }
+
+        binding.button3.setOnClickListener { view ->
+            val moveIntent = Intent(this@MainActivity, NewsRecyclerViewActivity::class.java)
+            moveIntent.putExtra("key", "a7551c3980934b3d9f122dd4baef482e")
+            startActivity(moveIntent)
+        }
+
+//        binding.button.setOnClickListener { view ->
+//            val moveIntent = Intent(this@MainActivity, NewsRecyclerViewActivity::class.java)
+//            moveIntent.putExtra("key", "a7551c3980934b3d9f122dd4baef482e")
+//            moveIntent.putExtra("textSent", binding.textView.text)
+//            startActivity(moveIntent)
+//        }
+
+//        binding.button2.setOnClickListener { view ->
+//            val moveIntent = Intent(this@MainActivity, NewsRecyclerViewActivity::class.java)
+//            moveIntent.putExtra("key", "wrong key")
+//            startActivity(moveIntent)
+//        }
 
     }
 }

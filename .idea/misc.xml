@@ -21,12 +21,18 @@
         <entry key="app/src/main/res/drawable/rounded_edge.xml" value="0.23846153846153847" />
         <entry key="app/src/main/res/layout/activity_2.xml" value="0.24682971014492755" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_nav.xml" value="0.23596014492753623" />
         <entry key="app/src/main/res/layout/activity_news_detail.xml" value="0.2223731884057971" />
         <entry key="app/src/main/res/layout/activity_news_recycler_view.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_recycler_view.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/activity_replicate.xml" value="0.21829710144927536" />
         <entry key="app/src/main/res/layout/activity_retrofit.xml" value="0.11145833333333334" />
         <entry key="app/src/main/res/layout/activity_user_detail.xml" value="0.2223731884057971" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.23596014492753623" />
         <entry key="app/src/main/res/layout/fragment_new.xml" value="0.24682971014492755" />
+        <entry key="app/src/main/res/layout/fragment_news_recycler_view.xml" value="0.23233695652173914" />
+        <entry key="app/src/main/res/layout/fragment_recycler_view.xml" value="0.23233695652173914" />
+        <entry key="app/src/main/res/layout/fragment_replicate.xml" value="0.27923812300779927" />
       </map>
     </option>
   </component>

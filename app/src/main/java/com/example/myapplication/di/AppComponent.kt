@@ -7,6 +7,8 @@ import dagger.Component
 interface AppComponent {
     fun inject(newsRecyclerViewActivity: NewsRecyclerViewActivity)
 
+    fun injectFragment(newsRecyclerViewFragment: NewsRecyclerViewFragment)
+
     fun injectDetail(newsDetailActivity: NewsDetailActivity)
 }
 

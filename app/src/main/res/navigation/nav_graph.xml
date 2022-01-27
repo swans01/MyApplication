@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.myapplication.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_replicateFragment"
+            app:destination="@id/replicateFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_recyclerViewFragment"
+            app:destination="@id/recyclerViewFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newsRecyclerViewFragment"
+            app:destination="@id/newsRecyclerViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/replicateFragment"
+        android:name="com.example.myapplication.ReplicateFragment"
+        android:label="fragment_replicate"
+        tools:layout="@layout/fragment_replicate" />
+    <fragment
+        android:id="@+id/recyclerViewFragment"
+        android:name="com.example.myapplication.RecyclerViewFragment"
+        android:label="fragment_recycler_view"
+        tools:layout="@layout/fragment_recycler_view" />
+    <fragment
+        android:id="@+id/newsRecyclerViewFragment"
+        android:name="com.example.myapplication.NewsRecyclerViewFragment"
+        android:label="fragment_news_recycler_view"
+        tools:layout="@layout/fragment_news_recycler_view" />
+</navigation>
